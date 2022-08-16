@@ -34,6 +34,11 @@ function App() {
         <button onClick={() => setPath("form")}>Form</button>
       </Header>
       <Content>{routes({ path })[path]}</Content>
+      {users.map((user) => (
+        <div key={user._id}>
+          {user.name} {user.age}
+        </div>
+      ))}
     </>
   );
 }
