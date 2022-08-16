@@ -1,0 +1,50 @@
+.form {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    background-color: lightskyblue;
+}
+
+.form div {
+    padding: 0.2em;
+}
+
+.form button {
+    width: fit-content;
+}
+
+.form .tags {
+    display: flex;
+    align-items: center;
+}
+
+.form .tags .tag {
+    border: 1px solid black;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px;
+    margin: 5px;
+}
+
+.form .tags .tag span {
+    color: red;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.form .tags .tag:hover {
+    background-color: lightgreen;
+}
+
+.form .form-header {
+    background-color: grey;
+    height: 50px;
+}
+
+.form .form-footer {
+    background-color: grey;
+    height: 50px;
+}

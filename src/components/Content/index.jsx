@@ -1,13 +1,7 @@
-function Content({ setCurrentDate, setState }) {
+function Content({ children }) {
   return (
     <div>
-      Content
-      <div>
-        <button onClick={setState}>Toggle content</button>
-        <button onClick={setCurrentDate}>
-          Set current date
-        </button>
-      </div>
+      {children}
     </div>
   );
 }

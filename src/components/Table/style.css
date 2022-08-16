@@ -1,0 +1,14 @@
+table {
+    padding: 1em;
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    background-color: aliceblue;
+}
+
+tbody tr:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
