@@ -1,14 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchUser, saveUser } from "../../api";
 import { UserView } from "../../components/User";
+import { useNavigationContext } from "../../context";
 import "./style.css";
 
-export default function Form({ id, navigateTo }) {
+export default function Form() {
+  const { navigateTo, navigationState: { data: { id } } } = useNavigationContext();
   const [user, setUser] = useState(null);
   const [viewMode, setViewMode] = useState("readonly");
 
   useEffect(() => {
-    fetchUser(id).then((data) => setUser(data));
+    if (id) {
+      fetchUser(id).then((data) => setUser(data));
+    }
   }, [id]);
 
   const editHandler = useCallback(() => {

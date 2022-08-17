@@ -3,7 +3,7 @@ import React, { memo } from "react";
 function TableBody({ data, columns, onRowClick }) {
   return (
     <tbody>
-      {data.map((item, index) => (
+      {data?.length === 0 ? 'Loading...' : data.map((item, index) => (
         <tr key={item.id} onClick={() => onRowClick(item)}>
           <td scope="th">{index + 1}</td>
           {columns.map((column) => (

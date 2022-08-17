@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { fetchUsers } from "../../api";
 import Table from "../../components/Table";
+import { useNavigationContext } from "../../context";
 
 const columns = [
   {
@@ -21,7 +22,10 @@ const columns = [
   },
 ];
 
-export default function List({ navigateTo }) {
+export default function List() {
+
+  const { navigateTo } = useNavigationContext();
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

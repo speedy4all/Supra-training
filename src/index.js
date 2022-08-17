@@ -1,8 +1,14 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
 
-const mainElement = document.getElementById('root');
+import { NavigationProvider } from "./context";
+
+const mainElement = document.getElementById("root");
 
 const root = createRoot(mainElement);
 
-root.render(<App />);
+root.render(
+  <NavigationProvider>
+    <App />
+  </NavigationProvider>
+);

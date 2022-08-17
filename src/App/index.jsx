@@ -5,23 +5,17 @@ import Header from "../components/Header";
 import About from "../containers/About";
 import Form from "../containers/Form";
 import List from "../containers/List";
+import { useNavigationContext } from "../context";
 
-const routes = (args = {}) => ({
-  about: <About {...args} />,
-  list: <List {...args} />,
-  form: <Form {...args} />,
+const routes = () => ({
+  about: <About />,
+  list: <List />,
+  form: <Form />,
 });
 
 function App() {
-  const [navigationState, setNavigationState] = useState({
-    path: "about",
-    data: null,
-  });
 
-  const navigateTo = useCallback((path, data = {}) => {
-    setNavigationState({ path, ...data });
-  }, []);
-
+  const { navigationState: { path }, navigateTo } = useNavigationContext();
   return (
     <>
       <Header className="app-header">
@@ -29,7 +23,7 @@ function App() {
         <button onClick={() => navigateTo("list")}>List</button>
       </Header>
       <Content>
-        {routes({ ...navigationState, navigateTo })[navigationState.path]}
+        {routes()[path]}
       </Content>
     </>
   );
