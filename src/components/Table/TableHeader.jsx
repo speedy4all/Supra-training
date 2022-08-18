@@ -7,7 +7,7 @@ function TableHeader({ columns }) {
         <tr>
           <th>#</th>
           {columns.map((column) => (
-            <th key={column.dataIndex}>
+            <th key={`${column.dataIndex}_${column.label}`}>
               {column.label}
             </th>
           ))}

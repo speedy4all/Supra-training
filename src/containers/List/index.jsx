@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { fetchUsers } from "../../api";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "./actions";
 import Table from "../../components/Table";
 import { injectProvider, useNavigationContext } from "../../context";
 import UserListProvider, { useUserListContext } from "./UserListProvider";
@@ -67,6 +68,7 @@ function List() {
   useEffect(() => {
     getUsers();
   }, []);
+
 
   const onRowClick = useCallback(({ id }) => navigateTo("form", { id }), []);
 

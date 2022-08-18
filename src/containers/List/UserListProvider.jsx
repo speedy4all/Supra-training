@@ -3,16 +3,9 @@ import React, {
   useCallback,
   useContext,
   useMemo,
-  useReducer,
 } from "react";
-import { fetchUsers as callUsersApi } from "../../api";
-import { fetchUsers, fetchUsersError, fetchUsersSuccess } from "./actions";
-import {
-  FETCH_USERS_ERROR,
-  FETCH_USERS_REQUEST,
-  FETCH_USERS_SUCCESS,
-} from "./constants";
-import userListReducer, { initialState } from "./reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "./actions";
 
 const UserListContext = createContext();
 
@@ -21,17 +14,11 @@ export function useUserListContext() {
 }
 
 export default function UserListProvider({ children }) {
-  const [state, dispatch] = useReducer(userListReducer, initialState);
+  const state = useSelector((store) => store.users);
+  const dispatch = useDispatch();
 
   const getUsers = useCallback(() => {
     dispatch(fetchUsers());
-    callUsersApi()
-      .then((data) => {
-        dispatch(fetchUsersSuccess(data));
-      })
-      .catch((e) => {
-        dispatch(fetchUsersError(e.message));
-      });
   }, []);
 
   const providerValue = useMemo(() => ({ state, getUsers }), [state]);

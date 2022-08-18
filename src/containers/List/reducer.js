@@ -11,7 +11,7 @@ export const initialState = {
   error: "",
 };
 
-export default function userListReducer(state, action) {
+export default function userListReducer(state = initialState, action) {
   return produce(state, (draft) => {
     switch (action.type) {
       case FETCH_USERS_REQUEST:
