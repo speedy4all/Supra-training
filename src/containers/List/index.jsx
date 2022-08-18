@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { fetchUsers } from "../../api";
 import Table from "../../components/Table";
-import { useNavigationContext } from "../../context";
+import { injectProvider, useNavigationContext } from "../../context";
+import UserListProvider, { useUserListContext } from "./UserListProvider";
 
 const columns = [
   {
@@ -20,19 +21,64 @@ const columns = [
     label: "Phone",
     dataIndex: "phone",
   },
+  {
+    label: "User state",
+    render: ({ isActive }) =>
+      isActive ? (
+        <span style={{ color: "green" }}>Active</span>
+      ) : (
+        <strong style={{ color: "red" }}>Inactive</strong>
+      ),
+  },
+  {
+    label: "Friends",
+    render: ({ friends }) => (
+      <span>{friends?.map((f) => f.name).join(", ")}</span>
+    ),
+  },
+  {
+    label: "Hobbies",
+    render: ({ tags }) => (
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        {tags?.map((tag, index) => (
+          <div
+            key={`${tag}_${index}`}
+            style={{
+              padding: 3,
+              backgroundColor: "lightgreen",
+              margin: 5,
+              borderRadius: 5,
+            }}
+          >
+            {tag}
+          </div>
+        ))}
+      </div>
+    ),
+  },
 ];
 
-export default function List() {
-
+function List() {
   const { navigateTo } = useNavigationContext();
+  const { state, getUsers } = useUserListContext();
 
-  const [users, setUsers] = useState([]);
+  const { data, error, loading } = state;
 
   useEffect(() => {
-    fetchUsers().then((data) => setUsers(data));
+    getUsers();
   }, []);
 
   const onRowClick = useCallback(({ id }) => navigateTo("form", { id }), []);
 
-  return <Table data={users} columns={columns} onRowClick={onRowClick} />;
+  if (error) {
+    return error;
+  }
+
+  if (loading) {
+    return "Loading... Please wait a sec :)";
+  }
+
+  return <Table data={data} columns={columns} onRowClick={onRowClick} />;
 }
+
+export default injectProvider(List, UserListProvider);
