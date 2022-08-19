@@ -1,3 +1,4 @@
 import usersMiddleware from "./containers/List/middleware";
+import userFormMiddleware from "./containers/Form/middleware";
 
-export default [...usersMiddleware];
+export default [...usersMiddleware, ...userFormMiddleware];

@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "./actions";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Table from "../../components/Table";
-import { injectProvider, useNavigationContext } from "../../context";
+import { injectProvider } from "../../context";
 import UserListProvider, { useUserListContext } from "./UserListProvider";
+import { navigateTo } from "../../App/actions";
 
 const columns = [
   {
@@ -60,8 +60,8 @@ const columns = [
 ];
 
 function List() {
-  const { navigateTo } = useNavigationContext();
   const { state, getUsers } = useUserListContext();
+  const dispatch = useDispatch();
 
   const { data, error, loading } = state;
 
@@ -69,8 +69,10 @@ function List() {
     getUsers();
   }, []);
 
-
-  const onRowClick = useCallback(({ id }) => navigateTo("form", { id }), []);
+  const onRowClick = useCallback(
+    ({ id }) => dispatch(navigateTo("form", { id })),
+    []
+  );
 
   if (error) {
     return error;

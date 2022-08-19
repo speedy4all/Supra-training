@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { saveUser } from "../../api";
 import FormButtons from "../FormButtons";
 import FormHeader from "../FormHeader";
@@ -9,12 +9,17 @@ import UserDetails from "../UserDetails";
 export default function UserView({
   user,
   readonly,
+  loading,
   saveUserHandler,
   cancelEditHandler,
   editHandler,
   goBackHandler,
 }) {
   const [formValues, setFormValues] = useState({ ...user });
+
+  useEffect(() => {
+    setFormValues(user);
+  }, [user]);
 
   const onChange = useCallback(({ target: { value, name } }) => {
     setFormValues((old) => ({ ...old, [name]: value }));
@@ -23,7 +28,6 @@ export default function UserView({
   const onSave = useCallback(() => {
     saveUserHandler(formValues);
   }, [saveUserHandler, formValues]);
-
 
   return (
     <div className="form">
@@ -39,6 +43,7 @@ export default function UserView({
 
       <FormButtons
         readonly={readonly}
+        loading={loading}
         saveHandler={onSave}
         cancelHandler={cancelEditHandler}
       />
