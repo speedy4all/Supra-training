@@ -1,11 +1,10 @@
-import axios from "axios";
-import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Content from "../components/Content";
 import Header from "../components/Header";
 import About from "../containers/About";
 import Form from "../containers/Form";
 import List from "../containers/List";
-import { useNavigationContext } from "../context";
+import { navigateTo } from "./actions";
 
 const routes = () => ({
   about: <About />,
@@ -14,13 +13,14 @@ const routes = () => ({
 });
 
 function App() {
-
-  const { navigationState: { path }, navigateTo } = useNavigationContext();
+  const path = useSelector((store) => store.root.path);
+  const dispatch = useDispatch();
+  
   return (
     <>
       <Header className="app-header">
-        <button onClick={() => navigateTo("about")}>About</button>
-        <button onClick={() => navigateTo("list")}>List</button>
+        <button onClick={() => dispatch(navigateTo("about"))}>About</button>
+        <button onClick={() => dispatch(navigateTo("list"))}>List</button>
       </Header>
       <Content>
         {routes()[path]}

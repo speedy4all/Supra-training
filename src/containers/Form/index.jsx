@@ -1,18 +1,23 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { fetchUser, saveUser } from "../../api";
+import { useDispatch, useSelector } from "react-redux";
+import { navigateTo } from "../../App/actions";
 import { UserView } from "../../components/User";
-import { useNavigationContext } from "../../context";
+import { fetchUser, saveUser } from "./actions";
 import "./style.css";
 
 export default function Form() {
-  const { navigateTo, navigationState: { data: { id } } } = useNavigationContext();
-  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const { id, state } = useSelector((store) => ({
+    id: store.root.data?.id,
+    state: store.userForm,
+  }));
+
+  const { user, loading, error } = state;
+
   const [viewMode, setViewMode] = useState("readonly");
 
   useEffect(() => {
-    if (id) {
-      fetchUser(id).then((data) => setUser(data));
-    }
+    dispatch(fetchUser(id));
   }, [id]);
 
   const editHandler = useCallback(() => {
@@ -20,7 +25,7 @@ export default function Form() {
   }, []);
 
   const saveUserHandler = useCallback((payload) => {
-    saveUser(payload).then((resp) => setUser(resp));
+    dispatch(saveUser(payload));
   }, []);
 
   const cancelEditHandler = useCallback(() => {
@@ -28,13 +33,17 @@ export default function Form() {
   }, []);
 
   const goBackHandler = useCallback(() => {
-    navigateTo("list");
+    dispatch(navigateTo("list"));
   }, [navigateTo]);
 
   const readonly = useMemo(() => viewMode === "readonly", [viewMode]);
 
-  if (!user) {
+  if (loading && !user.id) {
     return "Loading...";
+  }
+
+  if(error) {
+    return error;
   }
 
   return (
@@ -42,6 +51,7 @@ export default function Form() {
       key={viewMode}
       user={user}
       readonly={readonly}
+      loading={loading}
       saveUserHandler={saveUserHandler}
       cancelEditHandler={cancelEditHandler}
       editHandler={editHandler}
