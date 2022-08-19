@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from "react";
 
-export default function Tags({ tags, readonly, onChange }) {
+export default function Tags({ tags = [], readonly, onChange }) {
   const inputRef = useRef(null);
 
   const onKeyUp = ({ target: { value }, keyCode }) => {
