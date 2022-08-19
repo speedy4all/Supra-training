@@ -28,10 +28,11 @@ export function fetchUserError(err) {
   };
 }
 
-export function saveUser(user) {
+export function saveUser(user, reloadList) {
   return {
     type: SAVE_USER_REQUEST,
     payload: user,
+    meta: { reloadList },
   };
 }
 

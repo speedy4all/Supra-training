@@ -24,7 +24,7 @@ function App() {
           <Route path="/">
             <Route path="about" element={<About />} />
             <Route path="users" element={<List singlePage={singlePage} />}>
-              <Route path=":id" element={<Form />} />
+              <Route path=":id" element={<Form singlePage={singlePage} />} />
             </Route>
             <Route path="user/:id" element={<Form />} />
           </Route>

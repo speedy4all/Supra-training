@@ -2,11 +2,17 @@
   "users": [
     {
       "id": "62fb57af7dc2d857f3486e2a",
-      "name": "asd",
-      "age": "asd",
-      "email": "asd",
-      "address": "asd",
-      "phone": "+123123123123"
+      "name": "Bogdan Ion Buescu",
+      "age": "12",
+      "email": "speedy4all@gmail.com",
+      "address": "Valea Cetatii 11",
+      "phone": "+12222",
+      "tags": [
+        "asd",
+        "asd",
+        "dddd",
+        "asdasfdsf"
+      ]
     },
     {
       "id": "62fb57afc83fe245ce49d7a0",
@@ -235,7 +241,7 @@
       "isActive": false,
       "balance": "$1,837.07",
       "picture": "http://placehold.it/32x32",
-      "age": 30,
+      "age": "21",
       "eyeColor": "brown",
       "name": "Luna Glenn",
       "gender": "male",

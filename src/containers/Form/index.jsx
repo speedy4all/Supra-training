@@ -5,7 +5,7 @@ import { UserView } from "../../components/User";
 import { fetchUser, saveUser } from "./actions";
 import "./style.css";
 
-export default function Form() {
+export default function Form({ singlePage }) {
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -28,8 +28,8 @@ export default function Form() {
   }, []);
 
   const saveUserHandler = useCallback((payload) => {
-    dispatch(saveUser(payload));
-  }, []);
+    dispatch(saveUser(payload, !singlePage));
+  }, [singlePage]);
 
   const cancelEditHandler = useCallback(() => {
     setViewMode("readonly");
