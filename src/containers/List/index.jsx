@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import Table from "../../components/Table";
-import { injectProvider } from "../../context";
-import UserListProvider, { useUserListContext } from "./UserListProvider";
-import { navigateTo } from "../../App/actions";
+import { Outlet, useNavigate } from "react-router-dom";
+import { fetchUsers } from "./actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const columns = [
   {
@@ -59,19 +58,26 @@ const columns = [
   },
 ];
 
-function List() {
-  const { state, getUsers } = useUserListContext();
+function List({ singlePage }) {
+  const navigate = useNavigate();
+  const state = useSelector((store) => store.users);
   const dispatch = useDispatch();
 
   const { data, error, loading } = state;
 
   useEffect(() => {
-    getUsers();
+    dispatch(fetchUsers());
   }, []);
 
   const onRowClick = useCallback(
-    ({ id }) => dispatch(navigateTo("form", { id })),
-    []
+    ({ id }) => {
+      if (singlePage) {
+        navigate(`/user/${id}`);
+      } else {
+        navigate(`/users/${id}`);
+      }
+    },
+    [singlePage]
   );
 
   if (error) {
@@ -82,7 +88,12 @@ function List() {
     return "Loading... Please wait a sec :)";
   }
 
-  return <Table data={data} columns={columns} onRowClick={onRowClick} />;
+  return (
+    <>
+      <Outlet />
+      <Table data={data} columns={columns} onRowClick={onRowClick} />
+    </>
+  );
 }
 
-export default injectProvider(List, UserListProvider);
+export default List;
