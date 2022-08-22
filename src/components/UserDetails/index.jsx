@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import "./style.css";
 
 export default function UserDetails({ user, readonly, onChange }) {
   return (
@@ -7,6 +7,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input
+          aria-label="name"
           name="name"
           value={user.name}
           onChange={onChange}
@@ -16,6 +17,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="age">Age</label>
         <input
+          aria-label="age"
           name="age"
           value={user.age}
           onChange={onChange}
@@ -25,6 +27,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="email">Email</label>
         <input
+          aria-label="email"
           name="email"
           value={user.email}
           onChange={onChange}
@@ -34,6 +37,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="address">Address</label>
         <input
+          aria-label="address"
           name="address"
           value={user.address}
           onChange={onChange}
@@ -43,6 +47,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="balance">Balance</label>
         <input
+          aria-label="balance"
           name="balance"
           value={user.balance}
           onChange={onChange}
@@ -52,6 +57,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="eyeColor">Eye color</label>
         <input
+          aria-label="eyeColor"
           name="eyeColor"
           value={user.eyeColor}
           onChange={onChange}
@@ -61,6 +67,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="company">Company</label>
         <input
+          aria-label="company"
           name="company"
           value={user.company}
           onChange={onChange}
@@ -70,6 +77,7 @@ export default function UserDetails({ user, readonly, onChange }) {
       <div className="form-group">
         <label htmlFor="phone">Phone</label>
         <input
+          aria-label="phone"
           name="phone"
           value={user.phone}
           onChange={onChange}

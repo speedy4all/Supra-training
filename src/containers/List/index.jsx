@@ -91,7 +91,12 @@ function List({ singlePage }) {
   return (
     <>
       <Outlet />
-      <Table data={data} columns={columns} onRowClick={onRowClick} />
+      <Table
+        title="Users"
+        data={data}
+        columns={columns}
+        onRowClick={onRowClick}
+      />
     </>
   );
 }

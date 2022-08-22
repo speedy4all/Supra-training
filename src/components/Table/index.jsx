@@ -3,12 +3,15 @@ import "./style.css";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
-function Table({ data, columns, onRowClick }) {
+function Table({ data, columns, onRowClick, title }) {
   return (
-    <table>
-      <TableHeader columns={columns} />
-      <TableBody data={data} columns={columns} onRowClick={onRowClick} />
-    </table>
+    <div>
+      <label htmlFor={title}>{title}</label>
+      <table aria-label={title}>
+        <TableHeader columns={columns} />
+        <TableBody data={data} columns={columns} onRowClick={onRowClick} />
+      </table>
+    </div>
   );
 }
 
