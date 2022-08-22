@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Content from "../components/Content";
 import Header from "../components/Header";
@@ -16,7 +16,9 @@ function App() {
         <button onClick={() => setSinglePage((old) => !old)}>
           {(singlePage && "Nested page mode") || "Single page mode"}
         </button>
-        <button onClick={() => navigate("/about")}>About</button>
+        <button className="btn-list" onClick={() => navigate("/about")}>
+          About
+        </button>
         <button onClick={() => navigate("/users")}>List</button>
       </Header>
       <Content>

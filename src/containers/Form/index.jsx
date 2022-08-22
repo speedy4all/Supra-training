@@ -9,11 +9,6 @@ function Form({ singlePage, state, dispatch }) {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // const dispatch = useDispatch();
-  // const { state } = useSelector((store) => ({
-  //   state: store.userForm,
-  // }));
-
   const { user, loading, error } = state;
 
   const [viewMode, setViewMode] = useState("readonly");
