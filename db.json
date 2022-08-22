@@ -3,7 +3,7 @@
     {
       "id": "62fb57af7dc2d857f3486e2a",
       "name": "Bogdan Ion Buescu",
-      "age": "12",
+      "age": "41",
       "email": "speedy4all@gmail.com",
       "address": "Valea Cetatii 11",
       "phone": "+12222",
@@ -12,7 +12,8 @@
         "asd",
         "dddd",
         "asdasfdsf"
-      ]
+      ],
+      "balance": "asd"
     },
     {
       "id": "62fb57afc83fe245ce49d7a0",
