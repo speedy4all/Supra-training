@@ -1,8 +1,6 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "../utils";
+import { render, screen, fireEvent } from "../utils";
 import App from "../../App";
-import { act } from "react-dom/test-utils";
-import { useNavigate } from "react-router-dom";
 
 const mockedNavigate = jest.fn();
 
