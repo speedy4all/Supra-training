@@ -1,38 +1,39 @@
-import React from 'react';
+import React from "react";
 import { render, screen, fireEvent, waitFor } from "../utils";
-import App from '../../App';
-import { act } from 'react-dom/test-utils';
+import App from "../../App";
+import { act } from "react-dom/test-utils";
+import { useNavigate } from "react-router-dom";
 
-describe('<App />', () => {
-    it('should render component', async () => {
-        expect.assertions(3);
+const mockedNavigate = jest.fn();
 
-        render(<App />);
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedNavigate,
+}));
 
-        const aboutBtn = screen.getByRole('button', { name: 'About' });
+describe("<App />", () => {
+  it("should render component", async () => {
+    expect.assertions(3);
 
-        expect(aboutBtn).toBeInTheDocument();
-        expect(aboutBtn).toHaveAttribute('class', 'btn-list');
-        expect(aboutBtn).toBeVisible();
-    });
+    render(<App />);
 
-    it('should navigate to list', async () => {
-        expect.assertions(2);
+    const aboutBtn = screen.getByRole("button", { name: "About" });
 
-        render(<App />);
+    expect(aboutBtn).toBeInTheDocument();
+    expect(aboutBtn).toHaveAttribute("class", "btn-list");
+    expect(aboutBtn).toBeVisible();
+  });
 
-        const listBtn = screen.getByRole('button', { name: 'List' });
+  it("should navigate to list", async () => {
+    expect.assertions(2);
 
-        act(() => {
-            fireEvent.click(listBtn);
-        });
-        
-        await waitFor(() => {
-            const table = screen.getByRole('table', { name: 'Users'});
-            const nameHeader = screen.queryByText('Name');
+    render(<App />);
 
-            expect(table).toBeInTheDocument();
-            expect(nameHeader).toBeInTheDocument();
-        });
-    });
+    const listBtn = screen.getByRole("button", { name: "List" });
+
+    fireEvent.click(listBtn);
+
+    expect(mockedNavigate).toHaveBeenCalled();
+    expect(mockedNavigate).toHaveBeenCalledWith("/users");
+  });
 });
