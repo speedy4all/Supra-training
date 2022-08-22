@@ -6,7 +6,8 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "json-server --watch db.json --port 3001",
-    "test": "jest test --notify --coverage=true"
+    "test": "jest test --notify --coverage=true",
+    "build": "react-scripts build"
   },
   "author": "",
   "license": "ISC",
