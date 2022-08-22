@@ -1,4 +1,4 @@
-# Supra-training ![example workflow](https://github.com/speedy4all/Supra-training/actions/workflows/node.js.yml/badge.svg)
+# Supra-training ![test workflow](https://github.com/speedy4all/Supra-training/actions/workflows/node.js.yml/badge.svg)
 
 This is a sample project for learning purposes.
 React project created from scratch, using Redux and redux-saga
