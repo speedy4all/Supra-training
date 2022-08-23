@@ -15,6 +15,20 @@ export default function UserDetails({ user, readonly, onChange }) {
         />
       </div>
       <div className="form-group">
+        <label htmlFor="isActive">Active</label>
+        <input
+          style={{ flex: 0, marginLeft: -5 }}
+          type="checkbox"
+          aria-label="isActive"
+          name="isActive"
+          checked={user.isActive}
+          onChange={(e) =>
+            onChange({ target: { name: "isActive", value: e.target.checked } })
+          }
+          disabled={readonly}
+        />
+      </div>
+      <div className="form-group">
         <label htmlFor="age">Age</label>
         <input
           aria-label="age"

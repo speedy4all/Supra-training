@@ -13,13 +13,14 @@
         "dddd",
         "asdasfdsf"
       ],
-      "balance": "asd"
+      "balance": "asd",
+      "isActive": true
     },
     {
       "id": "62fb57afc83fe245ce49d7a0",
       "index": 1,
       "guid": "fb6e8abf-96a9-450a-82d9-fc020868d5b6",
-      "isActive": false,
+      "isActive": true,
       "balance": "$3,774.10",
       "picture": "http://placehold.it/32x32",
       "age": "23",
